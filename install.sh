@@ -13,3 +13,4 @@ echo "activating..."
 echo source ${f:0:8}/bin activate
 source ${f:0:8}/bin activate
 echo ".venv activated"
+pip install -r requirements.txt
