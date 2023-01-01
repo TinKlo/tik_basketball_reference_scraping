@@ -29,6 +29,7 @@ def get_season_averages_per_player(players_code_input):
         filename1 = datetime.now().strftime("%Y%m%d-%H%M%S")+"_"+p
         os.makedirs(f'folder/', exist_ok=True)
         export_json2 = table_df.to_json(f'folder/subfolder/{filename1}.json')
+        export_json2 = table_df.to_csv(f'folder/subfolder/{filename1}.csv')
         logging.info("Finished for: "+str(p))
         print(table_df)
     logging.info("End of run.")
