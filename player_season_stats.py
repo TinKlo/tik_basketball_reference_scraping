@@ -23,12 +23,15 @@ def get_season_averages_per_player(players_code_input):
         table = soup.select('table#per_game')[0]
         columns = table.find('thead').find_all('th') 
         table_df = pd.read_html(str(table))[0]
+        table_df['extracted+at']= datetime.today().strftime('%Y-%m-%d')
+        table_df['players_code']= p
         table_json = table_df.to_json(orient="columns")
         os.makedirs('folder/subfolder', exist_ok=True)
         currentDateAndTime = datetime.now()
         filename1 = datetime.now().strftime("%Y%m%d-%H%M%S")+"_"+p
         os.makedirs(f'folder/', exist_ok=True)
         export_json2 = table_df.to_json(f'folder/subfolder/{filename1}.json')
+        export_json2 = table_df.to_csv(f'folder/subfolder/{filename1}.csv')
         logging.info("Finished for: "+str(p))
         print(table_df)
     logging.info("End of run.")
